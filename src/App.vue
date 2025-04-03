@@ -15,5 +15,3 @@
 
   const store = useTodoStore()
 </script>
-
-<style></style>

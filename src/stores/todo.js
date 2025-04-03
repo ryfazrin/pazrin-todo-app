@@ -18,7 +18,10 @@ export const useTodoStore = defineStore('todo', () => {
 
   function toggleTodo(id) {
     const todo = todos.value.find(todo => todo.id === id)
-    if (todo) todo.completed = !todo.completed
+    if (todo) {
+      todo.completed = !todo.completed
+      return todo.completed
+    }
   }
 
   function updateTodo(id, newText) {
