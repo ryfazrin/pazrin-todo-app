@@ -4,12 +4,22 @@ import { ref, watch } from 'vue'
 export const useTodoStore = defineStore('todo', () => {
   const todos = ref(JSON.parse(localStorage.getItem('todos') || '[]'))
 
-  function addTodo(text) {
+  function addTodo({ text, description }) {
     todos.value.push({
       id: Date.now(),
       text,
+      description,
+      date: new Date().toISOString(),
       completed: false
     })
+  }
+
+  function updateTodo(id, { text, description }) {
+    const todo = todos.value.find(todo => todo.id === id)
+    if (todo) {
+      todo.text = text
+      todo.description = description
+    }
   }
 
   function removeTodo(id) {
@@ -22,11 +32,6 @@ export const useTodoStore = defineStore('todo', () => {
       todo.completed = !todo.completed
       return todo.completed
     }
-  }
-
-  function updateTodo(id, newText) {
-    const todo = todos.value.find(todo => todo.id === id)
-    if (todo) todo.text = newText
   }
 
   watch(
