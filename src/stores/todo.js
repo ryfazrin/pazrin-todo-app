@@ -1,8 +1,24 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 export const useTodoStore = defineStore('todo', () => {
   const todos = ref(JSON.parse(localStorage.getItem('todos') || '[]'))
+  const filter = ref('all') // 'all', 'active', 'completed'
+
+  const filteredTodos = computed(() => {
+    switch (filter.value) {
+      case 'active':
+        return todos.value.filter(todo => !todo.completed)
+      case 'completed':
+        return todos.value.filter(todo => todo.completed)
+      default:
+        return todos.value
+    }
+  })
+
+  function setFilter(newFilter) {
+    filter.value = newFilter
+  }
 
   function addTodo({ text, description }) {
     todos.value.push({
@@ -42,5 +58,9 @@ export const useTodoStore = defineStore('todo', () => {
     { deep: true }
   )
 
-  return { todos, addTodo, removeTodo, toggleTodo, updateTodo }
+  return { 
+    todos, 
+    filter, filteredTodos, setFilter, 
+    addTodo, removeTodo, toggleTodo, updateTodo
+  }
 })

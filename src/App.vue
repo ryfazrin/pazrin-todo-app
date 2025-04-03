@@ -2,6 +2,7 @@
   <div class="container">
     <h1>Pazrin Todo App</h1>
     <CreateModal />
+    <FilterButtons />
     <TodoList v-if="store.todos.length" />
     <p v-else class="empty-message">No tasks yet. Add one above!</p>
   </div>
@@ -9,6 +10,7 @@
 
 <script setup>
 import CreateModal from './components/CreateModal.vue'
+import FilterButtons from './components/FilterButtons.vue'
 import TodoList from './components/TodoList.vue'
 import { useTodoStore } from './stores/todo'
 

@@ -1,7 +1,7 @@
 <template>
   <TransitionGroup name="slide" tag="div" class="todo-list">
     <TodoItem
-      v-for="todo in store.todos"
+      v-for="todo in store.filteredTodos"
       :key="todo.id"
       :todo="todo"
     />
