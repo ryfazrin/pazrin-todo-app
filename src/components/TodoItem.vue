@@ -73,16 +73,18 @@ const handleDelete = async () => {
   })
 
   if (result.isConfirmed) {
-    store.removeTodo(props.todo.id)
-    Swal.fire({
-      icon: 'success',
-      title: 'Deleted!',
-      text: 'Your task has been deleted.',
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2000
-    })
+    setTimeout(() => {
+      store.removeTodo(props.todo.id)
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Your task has been deleted.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }, 300)
   }
 }
 

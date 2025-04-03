@@ -1,11 +1,11 @@
 <template>
-  <div class="todo-list">
+  <TransitionGroup name="slide" tag="div" class="todo-list">
     <TodoItem
       v-for="todo in store.todos"
       :key="todo.id"
       :todo="todo"
     />
-  </div>
+  </TransitionGroup>
 </template>
 
 <script setup>
